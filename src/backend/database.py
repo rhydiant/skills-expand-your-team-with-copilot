@@ -5,11 +5,96 @@ MongoDB database configuration and setup for Mergington High School API
 from pymongo import MongoClient
 from argon2 import PasswordHasher
 
-# Connect to MongoDB
-client = MongoClient('mongodb://localhost:27017/')
-db = client['mergington_high']
-activities_collection = db['activities']
-teachers_collection = db['teachers']
+# Connect to MongoDB with fallback to in-memory storage
+try:
+    client = MongoClient('mongodb://localhost:27017/')
+    db = client['mergington_high']
+    activities_collection = db['activities']
+    teachers_collection = db['teachers']
+    # Test the connection
+    client.admin.command('ping')
+    USE_MONGODB = True
+except Exception as e:
+    print(f"MongoDB not available, using in-memory storage: {e}")
+    USE_MONGODB = False
+    # In-memory fallback storage
+    activities_data = {}
+    teachers_data = {}
+    
+    # Create a simple mock collection class
+    class MockCollection:
+        def __init__(self, data_store):
+            self.data = data_store
+            
+        def find(self, query={}):
+            # Simple implementation for basic queries
+            results = []
+            for key, value in self.data.items():
+                if not query or self._matches_query(value, query):
+                    results.append({"_id": key, **value})
+            return results
+                    
+        def find_one(self, query):
+            for key, value in self.data.items():
+                if query.get("_id") == key or self._matches_query(value, query):
+                    return {"_id": key, **value}
+            return None
+            
+        def insert_one(self, doc):
+            _id = doc.pop("_id")
+            self.data[_id] = doc
+            return type('Result', (), {'inserted_id': _id})()
+            
+        def update_one(self, query, update):
+            for key, value in self.data.items():
+                if query.get("_id") == key or self._matches_query(value, query):
+                    if "$push" in update:
+                        for field, val in update["$push"].items():
+                            if field not in self.data[key]:
+                                self.data[key][field] = []
+                            self.data[key][field].append(val)
+                    if "$pull" in update:
+                        for field, val in update["$pull"].items():
+                            if field in self.data[key] and val in self.data[key][field]:
+                                self.data[key][field].remove(val)
+                    return type('Result', (), {'modified_count': 1})()
+            return type('Result', (), {'modified_count': 0})()
+            
+        def count_documents(self, query):
+            return len(self.data)
+            
+        def aggregate(self, pipeline):
+            # Basic implementation for the days aggregation
+            if len(pipeline) == 3:  # Assume it's the days aggregation
+                days = set()
+                for activity in self.data.values():
+                    if "schedule_details" in activity and "days" in activity["schedule_details"]:
+                        days.update(activity["schedule_details"]["days"])
+                return [{"_id": day} for day in sorted(days)]
+            return []
+            
+        def _matches_query(self, doc, query):
+            for key, value in query.items():
+                if key == "schedule_details.days" and isinstance(value, dict) and "$in" in value:
+                    if "schedule_details" not in doc or "days" not in doc["schedule_details"]:
+                        return False
+                    if not any(day in doc["schedule_details"]["days"] for day in value["$in"]):
+                        return False
+                elif key.startswith("schedule_details.") and isinstance(value, dict):
+                    field = key.split(".")[1]
+                    if "schedule_details" not in doc or field not in doc["schedule_details"]:
+                        return False
+                    doc_val = doc["schedule_details"][field]
+                    if "$gte" in value and doc_val < value["$gte"]:
+                        return False
+                    if "$lte" in value and doc_val > value["$lte"]:
+                        return False
+                elif key in doc and doc[key] != value:
+                    return False
+            return True
+    
+    activities_collection = MockCollection(activities_data)
+    teachers_collection = MockCollection(teachers_data)
 
 # Methods
 def hash_password(password):
@@ -163,6 +248,17 @@ initial_activities = {
         },
         "max_participants": 16,
         "participants": ["william@mergington.edu", "jacob@mergington.edu"]
+    },
+    "Manga Maniacs": {
+        "description": "Dive into epic adventures, supernatural powers, and heartwarming friendships! Join fellow otaku to discuss your favorite manga series, discover hidden gems, and create your own manga-inspired art. From shonen battles to slice-of-life stories, we celebrate all genres in this ultimate manga sanctuary!",
+        "schedule": "Tuesdays, 7:00 PM - 8:30 PM",
+        "schedule_details": {
+            "days": ["Tuesday"],
+            "start_time": "19:00",
+            "end_time": "20:30"
+        },
+        "max_participants": 15,
+        "participants": []
     }
 }
 
