@@ -1,0 +1,120 @@
+name: 🐛 Bug Report
+description: Report a problem or issue with the Mergington High School Activities system
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug! Please provide detailed information to help us understand and fix the issue quickly.
+        
+  - type: textarea
+    id: problem-description
+    attributes:
+      label: "Problem Description"
+      description: "Describe the problem you're experiencing. What is happening that shouldn't be happening?"
+      placeholder: "Example: Students cannot sign up for Drama Club - the signup button doesn't work"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: "Steps to Reproduce"
+      description: "Provide step-by-step instructions to reproduce the bug"
+      placeholder: |
+        1. Go to the activities page
+        2. Find the Drama Club activity
+        3. Click the "Sign Up" button
+        4. Nothing happens
+    validations:
+      required: true
+      
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: "Expected Behavior"
+      description: "What should happen instead?"
+      placeholder: "Example: Student should be successfully signed up and see a confirmation message"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: "Actual Behavior"
+      description: "What actually happens?"
+      placeholder: "Example: Button clicks but no signup occurs, no error message is shown"
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: affected-area
+    attributes:
+      label: "Affected Area"
+      description: "Which part of the system is affected?"
+      options:
+        - Student Registration/Signup
+        - Activity Display/Listing
+        - User Login/Authentication
+        - Activity Management
+        - Website Layout/Design
+        - Other
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: "Urgency Level"
+      description: "How urgent is this fix?"
+      options:
+        - Low - Can wait for next update
+        - Medium - Should be fixed soon
+        - High - Needs immediate attention
+        - Critical - System is broken/unusable
+    validations:
+      required: true
+      
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: "Acceptance Criteria"
+      description: "How will we know this bug is fixed? What should work correctly?"
+      placeholder: |
+        - [ ] Student can successfully sign up for activities
+        - [ ] Confirmation message appears after signup
+        - [ ] Student's name appears in the participant list
+        - [ ] Activity count updates correctly
+    validations:
+      required: true
+      
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: "Additional Context"
+      description: "Any other information that might be helpful (screenshots, error messages, browser info, etc.)"
+      placeholder: "Screenshots, error messages, which browser you're using, etc."
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## For Developers
+        
+        **Suggested Investigation Areas:**
+        - Check browser console for JavaScript errors
+        - Verify API endpoint functionality at `/docs`  
+        - Test signup functionality in different browsers
+        - Check database/data storage for signup records
+        - Verify FastAPI backend endpoints are working
+        
+        **Testing Checklist:**
+        - [ ] Test signup functionality for all activities
+        - [ ] Verify error handling for duplicate signups
+        - [ ] Test with different browsers (Chrome, Firefox, Safari)
+        - [ ] Check API responses in network tab
+        - [ ] Ensure proper error messages are displayed to users

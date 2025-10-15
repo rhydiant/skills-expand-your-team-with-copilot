@@ -1,0 +1,153 @@
+name: ✨ Feature Request
+description: Request a new feature or enhancement for the Mergington High School Activities system
+title: "[Feature]: "
+labels: ["enhancement", "needs-review"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature! Please provide detailed information to help us understand your needs.
+        
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: "Feature Description"
+      description: "What new feature would you like to see added to the system?"
+      placeholder: "Example: Add ability for students to rate and review activities they've participated in"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: problem-solving
+    attributes:
+      label: "Problem This Solves"
+      description: "What problem or need does this feature address? Why is it important?"
+      placeholder: "Example: Students want to share their experiences to help other students choose activities. Teachers want feedback on activity quality."
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: feature-category
+    attributes:
+      label: "Feature Category"
+      description: "What type of feature is this?"
+      options:
+        - Student Experience Enhancement
+        - Teacher/Admin Tools
+        - Activity Management
+        - Communication/Notifications
+        - Reporting/Analytics
+        - User Interface Improvement
+        - Integration with Other Systems
+        - Other
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "Priority Level"
+      description: "How important is this feature?"
+      options:
+        - Nice to have - Would be helpful but not essential
+        - Important - Would significantly improve the system
+        - High - Really needed for better functionality
+        - Critical - Essential for the system to work properly
+    validations:
+      required: true
+      
+  - type: textarea
+    id: detailed-requirements
+    attributes:
+      label: "Detailed Requirements"
+      description: "Describe exactly how this feature should work. Include user interactions, data requirements, and any business rules."
+      placeholder: |
+        Example:
+        - Students can rate activities on a 1-5 star scale after participating
+        - Students can write optional text reviews (max 500 characters)
+        - Only students who have actually signed up can rate/review
+        - Reviews are visible to all students browsing activities
+        - Teachers can see average ratings and reviews for their activities
+        - Inappropriate reviews can be flagged and removed
+    validations:
+      required: true
+      
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: "Acceptance Criteria"
+      description: "How will we know this feature is complete and working correctly?"
+      placeholder: |
+        - [ ] Students can submit ratings (1-5 stars) for activities they've joined
+        - [ ] Students can write and edit their reviews
+        - [ ] Average ratings are displayed on activity cards
+        - [ ] Reviews are shown when viewing activity details
+        - [ ] Only participants can rate/review activities
+        - [ ] Admin can moderate inappropriate reviews
+        - [ ] Rating data is properly saved and retrieved
+    validations:
+      required: true
+      
+  - type: textarea
+    id: user-stories
+    attributes:
+      label: "User Stories"
+      description: "Describe how different users would interact with this feature"
+      placeholder: |
+        - As a student, I want to rate activities so I can share my experience with others
+        - As a student, I want to read reviews so I can make informed decisions about activities
+        - As a teacher, I want to see feedback on my activities so I can improve them
+        - As an admin, I want to moderate reviews so inappropriate content is removed
+    validations:
+      required: true
+      
+  - type: textarea
+    id: constraints-limitations
+    attributes:
+      label: "Constraints and Limitations"
+      description: "Any limitations, restrictions, or technical constraints to consider?"
+      placeholder: |
+        - Must work within current FastAPI/Python backend
+        - Should integrate with existing user authentication
+        - Reviews should be stored in the current database system
+        - Must be mobile-friendly
+        - Should not slow down the main activities page
+    validations:
+      required: false
+      
+  - type: textarea
+    id: alternatives-considered
+    attributes:
+      label: "Alternative Solutions"
+      description: "Have you considered any alternative approaches to solve this problem?"
+      placeholder: "Example: Could use external survey tool, but integrated solution would be better for user experience"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## For Developers
+        
+        **Implementation Considerations:**
+        - Database schema changes may be needed for ratings/reviews
+        - API endpoints will need to be created for CRUD operations
+        - Frontend JavaScript will need updates for user interface
+        - Authentication checks required to verify user participation
+        - Consider using existing FastAPI patterns for consistency
+        
+        **Technical Requirements:**
+        - Extend current database models for ratings/reviews
+        - Add new API endpoints following RESTful conventions
+        - Update frontend to display ratings and review forms
+        - Implement proper validation and error handling
+        - Ensure mobile responsiveness matches existing design
+        
+        **Testing Approach:**
+        - Unit tests for new API endpoints
+        - Integration tests for rating/review workflows
+        - UI tests for user interactions
+        - Data validation tests for edge cases
+        - Performance testing with multiple reviews per activity

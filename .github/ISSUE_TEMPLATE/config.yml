@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📚 Development Documentation
+    url: https://github.com/rhydiant/skills-expand-your-team-with-copilot/blob/main/docs/how-to-develop.md
+    about: Learn how to set up and develop this application
+  - name: 💡 Quick Questions
+    url: https://github.com/rhydiant/skills-expand-your-team-with-copilot/discussions
+    about: Ask quick questions or start discussions about the project

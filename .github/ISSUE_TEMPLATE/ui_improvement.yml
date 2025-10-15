@@ -1,0 +1,202 @@
+name: 🎨 UI/UX Improvement
+description: Request improvements to the user interface, design, or user experience
+title: "[UI/UX]: "
+labels: ["ui/ux", "enhancement"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to request improvements to how the system looks, feels, or works for users.
+        
+  - type: dropdown
+    id: improvement-type
+    attributes:
+      label: "Type of UI/UX Improvement"
+      description: "What kind of improvement are you requesting?"
+      options:
+        - Visual Design (colors, fonts, styling)
+        - Layout and Organization (arrangement of elements)
+        - User Navigation (menus, links, flow between pages)
+        - Mobile/Responsive Experience
+        - Accessibility (screen readers, keyboard navigation, etc.)
+        - User Feedback (messages, confirmations, error handling)
+        - Performance (page loading, animations)
+        - Other Interface Improvement
+    validations:
+      required: true
+      
+  - type: textarea
+    id: current-experience
+    attributes:
+      label: "Current User Experience"
+      description: "Describe the current user interface or experience that needs improvement"
+      placeholder: |
+        Example:
+        - The activities are displayed in a plain list format
+        - It's hard to quickly scan and find interesting activities
+        - The signup buttons are small and hard to notice
+        - On mobile phones, the layout looks cramped
+    validations:
+      required: true
+      
+  - type: textarea
+    id: desired-improvement
+    attributes:
+      label: "Desired Improvement"
+      description: "What would you like the user experience to be like instead?"
+      placeholder: |
+        Example:
+        - Display activities in attractive cards with images
+        - Use color coding for different activity types
+        - Make signup buttons more prominent and colorful
+        - Optimize layout for mobile devices
+        - Add icons to make activities more visually appealing
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: affected-users
+    attributes:
+      label: "Who is Affected?"
+      description: "Which users would benefit from this improvement?"
+      options:
+        - Students browsing activities
+        - Teachers managing activities
+        - All users
+        - Mobile users specifically
+        - Users with accessibility needs
+        - New/first-time users
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "Priority Level"
+      description: "How important is this improvement?"
+      options:
+        - Low - Nice visual enhancement
+        - Medium - Would improve user experience
+        - High - Current interface is confusing or difficult
+        - Critical - Current interface is unusable or inaccessible
+    validations:
+      required: true
+      
+  - type: textarea
+    id: specific-pages
+    attributes:
+      label: "Specific Pages or Sections"
+      description: "Which pages or parts of the system need this improvement?"
+      placeholder: |
+        Example:
+        - Main activities listing page
+        - Activity detail popups
+        - Signup confirmation messages
+        - Header navigation
+        - All pages (site-wide improvement)
+    validations:
+      required: true
+      
+  - type: textarea
+    id: success-criteria
+    attributes:
+      label: "Success Criteria"
+      description: "How will we know this improvement is successful? What should the end result accomplish?"
+      placeholder: |
+        Example:
+        - Activities are easier to browse and find
+        - Students can quickly identify activities they're interested in
+        - Signup process is more obvious and inviting
+        - Interface works well on both desktop and mobile
+        - Users can complete tasks faster than before
+    validations:
+      required: true
+      
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: "Acceptance Criteria"
+      description: "Specific requirements that must be met for this improvement to be complete"
+      placeholder: |
+        - [ ] Activities display in card format with consistent styling
+        - [ ] Each activity card shows name, description, and participant count clearly
+        - [ ] Signup buttons are prominently displayed and easy to click
+        - [ ] Layout adjusts properly on mobile screens (responsive design)
+        - [ ] Color scheme is consistent with school branding
+        - [ ] All text remains readable and accessible
+    validations:
+      required: true
+      
+  - type: textarea
+    id: design-preferences
+    attributes:
+      label: "Design Preferences or Examples"
+      description: "Any specific design ideas, color preferences, or examples of what you'd like to see?"
+      placeholder: |
+        Example:
+        - Use school colors (blue and gold)
+        - Similar to how other school websites display information
+        - Clean, modern look that appeals to high school students
+        - Easy to read fonts
+        - Include activity category icons (sports, arts, academic, etc.)
+    validations:
+      required: false
+      
+  - type: dropdown
+    id: technical-constraints
+    attributes:
+      label: "Technical Constraints"
+      description: "Are there any technical limitations we should consider?"
+      options:
+        - None that I know of
+        - Must work on older devices/browsers
+        - Must maintain current functionality
+        - Should not require major system changes
+        - Must be accessible (WCAG compliance)
+        - Other constraints (please specify in additional notes)
+    validations:
+      required: false
+      
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: "Additional Notes"
+      description: "Any other details, examples, or context that would be helpful?"
+      placeholder: "Screenshots of similar designs, specific accessibility requirements, deadline considerations, etc."
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## For Developers
+        
+        **Implementation Areas:**
+        - `/src/static/styles.css` - Main styling and CSS updates
+        - `/src/static/index.html` - HTML structure modifications
+        - `/src/static/app.js` - Dynamic styling and interactive improvements
+        
+        **Design Considerations:**
+        - Follow responsive design principles for mobile compatibility
+        - Maintain consistent styling across all components
+        - Consider accessibility guidelines (WCAG 2.1)
+        - Test on multiple device sizes and browsers
+        - Ensure performance impact is minimal
+        
+        **Testing Checklist:**
+        - [ ] Test on desktop browsers (Chrome, Firefox, Safari, Edge)
+        - [ ] Test on mobile devices (various screen sizes)
+        - [ ] Verify accessibility with screen readers if applicable
+        - [ ] Check color contrast ratios for readability
+        - [ ] Validate that all interactive elements remain functional
+        - [ ] Test with different amounts of content (few vs many activities)
+        - [ ] Ensure loading performance is not negatively impacted
+        
+        **CSS/Styling Best Practices:**
+        - Use existing CSS class patterns when possible
+        - Make changes responsive with appropriate media queries
+        - Consider using CSS Grid or Flexbox for layout improvements
+        - Maintain consistent spacing and typography scale
+        - Use semantic HTML elements for better accessibility
