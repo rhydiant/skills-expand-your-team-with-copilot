@@ -1,0 +1,170 @@
+name: 📝 Content Update Request
+description: Request updates to school information, activities, text, or other content
+title: "[Content]: "
+labels: ["content", "documentation"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to request updates to any content in the system - activities, school information, text, images, etc.
+        
+  - type: dropdown
+    id: content-type
+    attributes:
+      label: "Type of Content Update"
+      description: "What type of content needs to be updated?"
+      options:
+        - Activity Information (name, description, schedule, etc.)
+        - School Information (name, logo, contact info)
+        - Website Text/Copy (headings, descriptions, instructions)
+        - Images or Graphics
+        - Links or References
+        - Help Text or Instructions
+        - Other Content
+    validations:
+      required: true
+      
+  - type: textarea
+    id: current-content
+    attributes:
+      label: "Current Content"
+      description: "What is the current text/information that needs to be changed?"
+      placeholder: |
+        Example:
+        Activity Name: "Drama Club"
+        Description: "Join our drama club to explore acting and theater"
+        Meeting Time: "Tuesdays after school"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: requested-content
+    attributes:
+      label: "Requested New Content"
+      description: "What should the new content be? Please provide exact text, information, or detailed descriptions."
+      placeholder: |
+        Example:
+        Activity Name: "Theater Arts Society"
+        Description: "Discover your passion for acting, directing, and stage design in our award-winning theater program"
+        Meeting Time: "Tuesdays and Thursdays, 3:30-5:00 PM"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: location-details
+    attributes:
+      label: "Location/Page Details"
+      description: "Where exactly is this content located? Which page, section, or area of the system?"
+      placeholder: |
+        Example:
+        - Main activities page
+        - Drama Club activity card
+        - Activity detail popup/modal
+        - All instances where "Drama Club" appears
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: "Update Urgency"
+      description: "How soon does this content need to be updated?"
+      options:
+        - Low - Can be updated anytime in the next month
+        - Medium - Should be updated within 1-2 weeks
+        - High - Needed within a few days
+        - Critical - Urgent (incorrect information is causing problems)
+    validations:
+      required: true
+      
+  - type: textarea
+    id: reason-for-change
+    attributes:
+      label: "Reason for Change"
+      description: "Why is this update needed? What prompted this change?"
+      placeholder: |
+        Example:
+        - Activity name changed officially by school administration
+        - Meeting times changed due to facility scheduling
+        - Description needs to be more appealing to attract students
+        - Information is outdated or incorrect
+    validations:
+      required: true
+      
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: "Acceptance Criteria"
+      description: "How will we verify the update is complete and correct?"
+      placeholder: |
+        - [ ] All instances of old activity name are updated to new name
+        - [ ] Activity description reflects new text exactly as provided
+        - [ ] Meeting times are updated on all relevant pages
+        - [ ] No spelling or formatting errors in new content
+        - [ ] Changes are visible to all users immediately
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: affects-other-content
+    attributes:
+      label: "Does this affect other content?"
+      description: "Will this change require updates to other related content or features?"
+      options:
+        - "No - only affects the specific content mentioned"
+        - "Maybe - might need related updates"
+        - "Yes - definitely requires other updates"
+        - "Unknown - not sure about related impacts"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: related-updates
+    attributes:
+      label: "Related Updates Needed"
+      description: "If this affects other content, what else needs to be updated? (Leave blank if not applicable)"
+      placeholder: |
+        Example:
+        - Update activity signup confirmation emails
+        - Update printed materials or flyers
+        - Notify other staff of the change
+        - Update school calendar or scheduling systems
+    validations:
+      required: false
+      
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: "Additional Notes"
+      description: "Any other information, special instructions, or context that would be helpful?"
+      placeholder: "Special formatting requirements, deadlines, approval needed from specific people, etc."
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## For Developers
+        
+        **Content Update Process:**
+        1. Locate all instances of the current content in codebase
+        2. Update database records if content is stored in database
+        3. Update static content in HTML/JavaScript files
+        4. Check for content in configuration files
+        5. Update any hardcoded references in backend code
+        
+        **Files to Check:**
+        - `/src/static/index.html` - Main page content
+        - `/src/static/app.js` - Dynamic content and labels  
+        - `/src/backend/database.py` - Sample data and initial content
+        - `/src/backend/routers/` - API response text and messages
+        
+        **Verification Steps:**
+        - [ ] Search entire codebase for old content
+        - [ ] Test that updated content displays correctly
+        - [ ] Verify no broken formatting or layout issues
+        - [ ] Check content appears consistently across all pages
+        - [ ] Test on different screen sizes if content affects layout
+        - [ ] Ensure any dynamic content updates properly from database

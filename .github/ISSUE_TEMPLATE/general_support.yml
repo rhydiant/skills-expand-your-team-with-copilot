@@ -1,0 +1,168 @@
+name: ❓ General Support & Questions
+description: Get help, ask questions, or request guidance about the system
+title: "[Support]: "
+labels: ["question", "support"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for general questions, support requests, or when you need help understanding how something works.
+        
+  - type: dropdown
+    id: support-type
+    attributes:
+      label: "Type of Support Needed"
+      description: "What kind of help do you need?"
+      options:
+        - How to use existing features
+        - Training or documentation request
+        - System configuration help
+        - Integration with other school systems
+        - Data export or reporting
+        - Understanding error messages
+        - Best practices guidance
+        - Other general question
+    validations:
+      required: true
+      
+  - type: textarea
+    id: question-description
+    attributes:
+      label: "Question or Issue Description"
+      description: "Please describe your question or what you need help with in detail"
+      placeholder: |
+        Example:
+        - How can I export a list of all students signed up for activities?
+        - What's the best way to manage activity capacity limits?
+        - Can this system send automatic reminder emails to students?
+        - I'm getting an error message when trying to access the admin area
+    validations:
+      required: true
+      
+  - type: textarea
+    id: what-tried
+    attributes:
+      label: "What Have You Already Tried?"
+      description: "Have you attempted any solutions or looked anywhere for answers?"
+      placeholder: |
+        Example:
+        - Looked through the system menus but couldn't find export option
+        - Tried clicking different buttons but nothing seems to work
+        - Asked other teachers but they weren't sure either
+        - Checked the documentation but it doesn't cover this topic
+    validations:
+      required: false
+      
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: "How Urgent Is This?"
+      description: "When do you need help with this?"
+      options:
+        - Not urgent - whenever convenient
+        - Moderate - within a week or two
+        - Soon - within a few days
+        - Urgent - as soon as possible
+    validations:
+      required: true
+      
+  - type: textarea
+    id: context
+    attributes:
+      label: "Additional Context"
+      description: "Any background information that might help us understand your needs better?"
+      placeholder: |
+        Example:
+        - This is for the fall semester activity fair next month
+        - I'm new to using this system and learning how everything works
+        - Our school has specific requirements from the district office
+        - This relates to our accreditation reporting requirements
+    validations:
+      required: false
+      
+  - type: dropdown
+    id: preferred-solution
+    attributes:
+      label: "Preferred Type of Help"
+      description: "What kind of solution would be most helpful?"
+      options:
+        - Step-by-step instructions
+        - New feature to make this easier
+        - Documentation or guide
+        - Training session
+        - System configuration change
+        - Integration with other tools
+        - Not sure - open to suggestions
+    validations:
+      required: true
+      
+  - type: textarea
+    id: desired-outcome
+    attributes:
+      label: "Desired Outcome"
+      description: "What would you like to be able to do after getting help?"
+      placeholder: |
+        Example:
+        - Be able to easily export student enrollment data for reporting
+        - Understand how to efficiently manage activity signups during busy periods
+        - Set up the system to work with our existing school email system
+        - Know how to troubleshoot common issues that come up
+    validations:
+      required: true
+      
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: "Success Criteria"
+      description: "How will you know your question has been answered or problem solved?"
+      placeholder: |
+        - [ ] I understand how to perform the task I need to do
+        - [ ] I have clear instructions to follow
+        - [ ] The solution works reliably for my needs
+        - [ ] I can teach other staff members how to do this
+        - [ ] Any new features work as expected
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## For Developers & Support Team
+        
+        **Response Guidelines:**
+        - Provide clear, step-by-step instructions when possible
+        - Include screenshots or examples if helpful
+        - Consider if this indicates a need for better documentation
+        - Evaluate if a new feature would better serve this need
+        - Check if similar questions have been asked before
+        
+        **Common Support Categories:**
+        
+        **Data Management:**
+        - Exporting student lists or activity reports
+        - Managing activity capacity and waitlists  
+        - Bulk operations (adding multiple activities, etc.)
+        
+        **System Configuration:**
+        - Setting up user permissions and access
+        - Customizing school branding and information
+        - Integrating with existing school systems
+        
+        **User Training:**
+        - How to navigate and use features effectively
+        - Best practices for managing activities
+        - Troubleshooting common user issues
+        
+        **Technical Issues:**
+        - System performance or reliability problems
+        - Error messages and their meanings
+        - Browser compatibility or mobile access issues
+        
+        **Potential Actions:**
+        - Create documentation if gap identified
+        - Develop new feature if common need
+        - Provide configuration guidance
+        - Schedule training session if needed
+        - Update user interface for better clarity
